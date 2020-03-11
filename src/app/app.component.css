@@ -1,0 +1,17 @@
+*{
+    background-color: tomato;
+    font-family: 'Mansalva', cursive;
+}
+body{
+    height: 720px;
+}
+#myCanvas{
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+#reset{
+    text-align: center;
+}
