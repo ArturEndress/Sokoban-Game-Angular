@@ -83,8 +83,7 @@ import { isNullOrUndefined } from 'util';
     moves: number;
     win: boolean;
     pilha: number[][][];
-    pilhaMovX: number[];
-    pilhaMovY: number[];
+    pilhaPlayer: Player[];
 
     draw(ctx){
       for(var c = 0; c < this.map.length;c++){
@@ -372,18 +371,18 @@ import { isNullOrUndefined } from 'util';
             [1,1,1,1,1,1,1,1],
             [1,0,0,0,0,0,0,1],
             [1,0,2,0,0,2,0,1],
-            [1,0,3,2,0,3,0,1],
+            [1,0,3,0,0,3,0,1],
             [1,0,0,0,0,0,0,1],
-            [1,0,0,0,2,0,0,1],
+            [1,0,0,0,0,0,0,1],
             [1,0,0,0,0,0,0,1],
             [1,1,1,1,1,1,1,1]
             ],[
             [1,1,1,1,1,1,1,1],
             [1,0,0,0,0,0,0,1],
-            [1,0,2,0,2,2,0,1],
-            [1,0,3,2,0,3,0,1],
-            [1,0,0,0,0,0,0,1],
-            [1,0,2,0,2,0,2,1],
+            [1,0,2,0,0,2,0,1],
+            [1,0,3,0,0,3,0,1],
+            [1,0,1,2,2,1,0,1],
+            [1,0,3,0,0,3,0,1],
             [1,0,0,0,0,0,0,1],
             [1,1,1,1,1,1,1,1]
             ],
@@ -406,16 +405,17 @@ import { isNullOrUndefined } from 'util';
           this.lv=1;
           this.map = this.lvs[0];
           this.moves = 0;  
+          this.player.x = 1;
+          this.player.y = 1;
         } 
       }
     }
     undo(){
+      this.pilhaPlayer.pop();
       this.pilha.pop();
-      this.pilhaMovY.pop();
-      this.pilhaMovX.pop();
 
-      this.player.x = this.pilhaMovX[this.pilhaMovX.length - 1];
-      this.player.y = this.pilhaMovY[this.pilhaMovY.length - 1];
+      this.player.x = this.player[this.player.length - 1].x;
+      this.player.y = this.player[this.player.length - 1].y;
       this.map = this.pilha[this.pilha.length-1];
     }
   }
