@@ -34,10 +34,13 @@ export class AppComponent implements OnInit {
     // this.img.src =
     //   "https://imgur.com/QpWSwC8";
     this.mapa.draw(this.ctx);
+    this.c.nativeElement.width = this.mapa.map[0].length * this.mapa.floor.width;
+    this.c.nativeElement.height = this.mapa.map.length * this.mapa.floor.width;
   }
 
   @HostListener("window:keydown", ["$event"])
   public ngAfterViewInit(event: KeyboardEvent) {
+    
     this.c.nativeElement.width = this.mapa.map[0].length * this.mapa.floor.width;
     this.c.nativeElement.height = this.mapa.map.length * this.mapa.floor.width;
 
